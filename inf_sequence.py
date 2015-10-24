@@ -9,7 +9,16 @@ def get_pos(a):
     ---
     returns: first ocurrence of 'a' in the sequence (int pos, starting from 1)
     """
-    pass
+    found = False
+    n = 1  # sequence start
+    seq = ""
+
+    while not found:
+        seq += str(n)
+        if a in seq:
+            found = True
+            return seq.index(a) + 1
+        n += 1
 
 
 def main(a):
