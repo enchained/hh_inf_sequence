@@ -3,11 +3,19 @@ import sys
 
 def kmp_get_pos(pattern):
     """
-    pattern: user input string to look for, numbers only.
-    ---
-    This function generates a sequence of positive integers as a string.
-    ---
-    returns: first ocurrence of pattern in the sequence (int pos, starting from 1)
+    Generate a sequence of positive integers,
+    and use Knuth-Morris-Pratt algorithm
+    to find first substring position in this sequence,
+    based on calculated shifts.
+    From:
+    http://code.activestate.com/recipes/117214-knuth-morris-pratt-string-matching/
+    Python Cookbook (O'Reilly), recipe 5.13. Finding Subsequences
+
+    Args:
+        pattern (str): target substring A.
+    Returns:
+        start_pos+1 (int): first ocurrence of pattern A
+        in integer_char_sequence S, starting from 1.
     """
     shift = compute_shifts(pattern)
     start_pos = 0
@@ -63,7 +71,7 @@ def compute_shifts(pattern):
 
 def main(pattern):
     if pattern.isdigit():
-        # search sequence A position in the infinite sequence S
+        # Search for sequence A position in the infinite sequence S
         pos = kmp_get_pos(pattern)
         print "Input " + pattern + " positioned at " + str(pos)
     else:
@@ -71,8 +79,8 @@ def main(pattern):
 
 
 if __name__ == '__main__':
-    # read sequence A
     if len(sys.argv) > 1:
+        # Read sequence A
         main(str(sys.argv[1]))
     else:
         print "Error: no sequence entered."
